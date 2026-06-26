@@ -39,10 +39,21 @@ npm install
 
 ### 4. Set Up Environment File
 
-Copy the example environment file:
+> ⚠️ The `.env` file is **not included** in the repository for security reasons. You must create it manually from the example file below.
 
+**On Mac / Linux / Git Bash:**
 ```bash
 cp .env.example .env
+```
+
+**On Windows Command Prompt:**
+```cmd
+copy .env.example .env
+```
+
+**On Windows PowerShell:**
+```powershell
+Copy-Item .env.example .env
 ```
 
 Then open `.env` and update the database section to match your setup:
@@ -152,6 +163,9 @@ composer install
 ```bash
 npm install && npm run build
 ```
+
+**`.env` file missing after cloning?**
+This is normal — `.env` is never committed to git. Follow Step 4 above to create it from `.env.example`.
 
 **500 error on first run?**
 Make sure you ran `php artisan key:generate` and that your `.env` database credentials are correct.
