@@ -20,20 +20,23 @@ class DashboardController extends Controller
             'categories' => ArtworkGroup::count(),
         ];
 
-        $user  = auth()->user();
-        $activityQuery = ActivityLog::with('user')->latest();
+        $user = auth()->user();
 
         if ($user->hasRole('Viewer')) {
-            $activityQuery->where('user_id', $user->id);
+            // Viewer sees no activity logs on the dashboard
+            $recentActivities = collect();
         } elseif ($user->hasRole('Staff')) {
+            // Staff sees only Viewer-role users' logs — not their own, not Admin's
             $viewerIds = Role::findByName('Viewer')->users->pluck('id')->toArray();
-            $activityQuery->where(function ($q) use ($user, $viewerIds) {
-                $q->where('user_id', $user->id)
-                  ->orWhereIn('user_id', $viewerIds);
-            });
+            $recentActivities = ActivityLog::with('user')
+                ->whereIn('user_id', $viewerIds)
+                ->latest()
+                ->take(15)
+                ->get();
+        } else {
+            // Administrator sees all logs
+            $recentActivities = ActivityLog::with('user')->latest()->take(15)->get();
         }
-
-        $recentActivities = $activityQuery->take(15)->get();
 
         return view('dashboard.index', compact('stats', 'recentActivities'));
     }

@@ -22,12 +22,9 @@ class ActivityLogController extends Controller
             // Viewer sees only their own logs
             $query->where('user_id', $user->id);
         } elseif ($user->hasRole('Staff')) {
-            // Staff sees their own logs + logs from Viewer-role users
+            // Staff sees only Viewer-role users' logs — not their own, not Admin's
             $viewerIds = Role::findByName('Viewer')->users->pluck('id')->toArray();
-            $query->where(function ($q) use ($user, $viewerIds) {
-                $q->where('user_id', $user->id)
-                  ->orWhereIn('user_id', $viewerIds);
-            });
+            $query->whereIn('user_id', $viewerIds);
         }
         // Administrator sees all — no filter applied
 
