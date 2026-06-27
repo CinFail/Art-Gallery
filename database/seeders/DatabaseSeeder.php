@@ -66,9 +66,9 @@ class DatabaseSeeder extends Seeder
             'view activity logs',
         ]);
 
-        // Viewer — read-only
+        // Viewer — read-only, no customer access, sees only own activity logs
         $viewerRole->syncPermissions([
-            'view artists', 'view artworks', 'view groups', 'view customers',
+            'view artists', 'view artworks', 'view groups', 'view activity logs',
         ]);
 
         

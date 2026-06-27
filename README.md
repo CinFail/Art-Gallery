@@ -135,6 +135,24 @@ http://127.0.0.1:8000
 
 ---
 
+## Role Permissions
+
+| Feature          | Administrator | Staff | Viewer |
+|------------------|:---:|:---:|:---:|
+| View Artists     | ✅ | ✅ | ✅ |
+| Manage Artists   | ✅ | ✅ | ❌ |
+| View Artworks    | ✅ | ✅ | ✅ |
+| Manage Artworks  | ✅ | ✅ | ❌ |
+| View Groups      | ✅ | ✅ | ✅ |
+| Manage Groups    | ✅ | ✅ | ❌ |
+| View Customers   | ✅ | ✅ | ❌ |
+| Manage Customers | ✅ | ✅ | ❌ |
+| Manage Users     | ✅ | ❌ | ❌ |
+| Manage Roles     | ✅ | ❌ | ❌ |
+| Activity Logs    | All logs | Own + Viewer logs | Own logs only |
+
+---
+
 ## Features
 
 - **Artwork Gallery** — Responsive card grid with image carousel at the top
@@ -143,7 +161,7 @@ http://127.0.0.1:8000
 - **Artwork Groups** — Organize artworks into named collections
 - **Artists & Customers** — Full CRUD management for both
 - **Role-Based Access** — Administrator, Staff, and Viewer roles via Spatie Permissions
-- **Activity Logs** — Full audit trail of all create, update, and delete actions
+- **Activity Logs** — Scoped audit trail: Admins see all, Staff see their own + Viewer logs, Viewers see only their own
 
 ---
 
