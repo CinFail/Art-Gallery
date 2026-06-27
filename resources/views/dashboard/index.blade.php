@@ -56,7 +56,8 @@
     </div>
 </div>
 
-<!-- Recent Activities -->
+<!-- Recent Activities (hidden for Viewer role) -->
+@if(!auth()->user()->hasRole('Viewer'))
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <span><i class="bi bi-journal-text me-2"></i>Recent Activities</span>
@@ -109,4 +110,5 @@
         @endif
     </div>
 </div>
+@endif
 @endsection

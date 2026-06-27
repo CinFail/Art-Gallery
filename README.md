@@ -149,7 +149,7 @@ http://127.0.0.1:8000
 | Manage Customers | ✅ | ✅ | ❌ |
 | Manage Users     | ✅ | ❌ | ❌ |
 | Manage Roles     | ✅ | ❌ | ❌ |
-| Activity Logs    | All logs | Own + Viewer logs | Own logs only |
+| Activity Logs    | All logs | Viewer-role users only | Hidden |
 
 ---
 
@@ -161,7 +161,7 @@ http://127.0.0.1:8000
 - **Artwork Groups** — Organize artworks into named collections
 - **Artists & Customers** — Full CRUD management for both
 - **Role-Based Access** — Administrator, Staff, and Viewer roles via Spatie Permissions
-- **Activity Logs** — Scoped audit trail: Admins see all, Staff see their own + Viewer logs, Viewers see only their own
+- **Activity Logs** — Scoped audit trail: Admins see all, Staff see only Viewer-role user logs, Viewers have no log access
 
 ---
 
